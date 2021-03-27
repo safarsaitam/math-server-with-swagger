@@ -1,0 +1,86 @@
+{
+    "swagger": "2.0","info": 
+    {
+        "version": "1.0.0",
+        "title": "F4Innovation API",
+        "description": "Backend API for the F4Innovation platform",
+        "license": 
+        {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": 
+    [
+        {
+            "name": "Users",
+            "description": "Handles user related requests"
+        }
+    ],
+    "schemes": 
+    [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": 
+    [
+        "application/json"
+    ],
+    "paths" : 
+    {
+        "/users/authenticate": 
+        {
+            "post":
+            {
+                "tags":
+                [
+                    "Users"
+                ],
+                "description": "Log user into the system",
+                "parameters": 
+                [
+                    {
+                        "name": "User email and password",
+                        "in": "body",
+                        "description": "Email and password inserted by the user"
+                    }
+                ],
+                "produces":
+                [
+                    "application/json"
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "description": "New user is logged in"
+                    },
+                    
+                    "400":
+                    {
+                        "description": "There were problems with the request message"
+                    },
+
+                    "404":
+                    {
+                        "description": "Could not find account with given email"
+                    },
+
+                    "500":
+                    {
+                        "description": "Internal server error"
+                    },
+
+                    "502":
+                    {
+                        "description": "Invalid password for given email"
+                    }
+                }
+            }
+        }
+    }
+}
