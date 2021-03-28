@@ -15,8 +15,8 @@
     "tags": 
     [
         {
-            "name": "Users",
-            "description": "Handles user related requests"
+            "name": "Math",
+            "description": "Handles math related requests"
         }
     ],
     "schemes": 
@@ -32,21 +32,46 @@
     ],
     "paths" : 
     {
-        "/users/authenticate": 
+        "/math/show": 
+        {
+            "get":
+            {
+                "tags":
+                [
+                    "Numbers"
+                ],
+                "description": "Replies with numbers in the system",
+                "produces":
+                [
+                    "application/json"
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "description": "New number was successfully added"
+                    }
+                }
+            }
+        },
+
+        "/math/push": 
         {
             "post":
             {
                 "tags":
                 [
-                    "Users"
+                    "Number push"
                 ],
-                "description": "Log user into the system",
+                "description": "Adds a number to the system",
                 "parameters": 
                 [
                     {
-                        "name": "User email and password",
+                        "name": "integer",
                         "in": "body",
-                        "description": "Email and password inserted by the user"
+                        "description": "Integer number to be added to the system",
+                        "type": "integer",
+                        "required": true
                     }
                 ],
                 "produces":
@@ -57,27 +82,36 @@
                 {
                     "200":
                     {
+                        "description": "Last number was successfully discarded"
+                    }
+
+                }
+            }
+        },
+
+        "/math/pop": 
+        {
+            "delete":
+            {
+                "tags":
+                [
+                    "Number pop"
+                ],
+                "description": "Removes last add number from the system",
+                "produces":
+                [
+                    "application/json"
+                ],
+                "responses":
+                {
+                    "200":
+                    {
                         "description": "New user is logged in"
                     },
-                    
+
                     "400":
                     {
-                        "description": "There were problems with the request message"
-                    },
-
-                    "404":
-                    {
-                        "description": "Could not find account with given email"
-                    },
-
-                    "500":
-                    {
-                        "description": "Internal server error"
-                    },
-
-                    "502":
-                    {
-                        "description": "Invalid password for given email"
+                        "description": "Array is already empty"
                     }
                 }
             }
